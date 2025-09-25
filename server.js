@@ -9,15 +9,17 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
-    user: 'hrafn',
-    password: '',
-    database: 'smartbrain1'
+    connectionString: 'process.env.postgresql://myndgreiningdb_user:Gt8viEG6WOu6zABVMCbsLknFMhZBTgKE@dpg-d3ap731gv73c739dpilg-a/myndgreiningdb',
+    port: 5432,
+    host: 'process.env.myndgreiningdb.virgina.onrender.com',
+    user: 'process.env.myndgreiningdb_user',
+    password: 'Gt8viEG6WOu6zABVMCbsLknFMhZBTgKE',
+    database: 'myndgreiningdb'
   }
 });
 
