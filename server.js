@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
@@ -24,13 +25,11 @@ const db = knex({
 });
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// Health check endpoint for Heroku
-app.get('/', (req, res) => {
-  res.json({ message: 'Backend is running!', status: 'ok' });
-});
+
 
 app.post('/signin', (req, res) => signin.handleSignin(req, res, db, bcrypt));
 app.post('/register', (req, res) => register.handleRegister(req, res, db, bcrypt));
